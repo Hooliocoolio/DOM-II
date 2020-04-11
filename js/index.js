@@ -38,7 +38,7 @@ logo.forEach(logo => {
     })
 })
 
-// EVENTS FOR THE IMAGES
+// DESTINATION EVENTS
 const destinations = document.querySelectorAll(".destination");
 
 destinations.forEach(place => {
