@@ -1,23 +1,34 @@
 
-// NAVIGATION EVENTS
-const links = document.querySelectorAll(".nav-link")
+// NAV LINKS (mouseenter and mouseout)
+let enterLink = document.querySelectorAll(".nav-link")
 
-links.forEach(link => {
-    link.addEventListener("click", (e) => {
-        e.preventDefault();
-        link.style.color = "red";
-        link.style.transform = "rotate(-360deg)";
-        link.style.transition = "all 1s"
-        link.style.color = "brickred";
-    })
-    link.addEventListener("mouseout", (e) => {
-        e.preventDefault();
-        link.style.color = "red";
-        link.style.transform = "rotate(360deg)";
-        link.style.transition = "all 1s"
-        link.style.color = "black";
-    })
-})
+enterLink.forEach(link => {
+    link.addEventListener('mouseenter', function (event) {
+        event.target.style.color = 'purple';
+        setTimeout(function () {
+            event.target.style.color = "red";
+        }, 500);
+    }, false);
+});
+
+let overLink = document.querySelectorAll("a")
+overLink.forEach(link => {
+    link.addEventListener('mouseout', function (event) {
+        event.target.style.color = 'white';
+        setTimeout(function () {
+            event.target.style.color = 'green';
+        }, 500);
+    }, false);
+});
+
+// Keydown event
+
+addEventListener('keydown', logKey);
+function logKey(key) {
+    alert(`You just hit the ${key.code}`);
+};
+
+
 
 // LOGO EVENT
 const logo = document.querySelectorAll(".logo-heading");
@@ -38,6 +49,24 @@ logo.forEach(logo => {
     })
 })
 
+// Mouse Wheel Event
+function zoom(event) {
+    event.preventDefault();
+
+    scale += event.deltaY * -0.01;
+
+    // Restrict scale
+    scale = Math.min(Math.max(.125, scale), 4);
+
+    // Apply scale transform
+    picture.style.transform = `scale(${scale})`;
+}
+
+let scale = 1;
+let picture = document.querySelector('img');
+picture.onwheel = zoom;
+
+
 // DESTINATION EVENTS
 const destinations = document.querySelectorAll(".destination");
 
@@ -53,3 +82,4 @@ destinations.forEach(place => {
         place.style.transition = "all 0.3s";
     })
 })
+
